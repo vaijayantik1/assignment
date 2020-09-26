@@ -1,0 +1,20 @@
+
+2. Compare  Data  between two large  Tables  and  orphans  in first  table   
+SQL  Quety   - 
+
+1) Orphnas  in Table 1  
+SELECT t1.column FROM   table1 t1 WHERE NOT EXISTS ( SELECT * FROM table2 t2 WHERE t1.column = t2.column )
+
+2) Orphans  in Table 2 
+SELECT t2.column FROM   table1 t2 WHERE NOT EXISTS ( SELECT * FROM table1 t1 WHERE t2.column = t1.column )
+
+3) 
+select table_name, COLUMN_NAME
+FROM ALL_CONS_COLUMNS
+WHERE CONSTRAINT_NAME IN ( SELECT CONSTRAINT_NAME
+FROM ALL_CONSTRAINTS
+where CONSTRAINT_TYPE = ‘P’
+)
+ORDER BY TABLE_NAME , POSITION;
+
+
